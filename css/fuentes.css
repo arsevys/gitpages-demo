@@ -1,0 +1,21 @@
+
+body {
+	//
+	background-color:gray;
+}
+h1{
+	font-family: "Rancho",time;
+}
+
+p {
+	font-family: "Roboto", Times, Baskerville, Georgia, serif;
+	 font-size: 18px;
+	 font-weight: 900;
+	 line-height: normal;
+}
+
+div {
+	background: green;
+	width: 1.5em;
+	height: 120px;
+}

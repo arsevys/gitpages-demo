@@ -1,0 +1,10 @@
+
+.hero {
+
+    background-image: url("../img/banner.jpg");
+    height:400px;
+    background-size: 35% 300px;/*width height*/
+    background-repeat: no-repeat;/*x : horizontal  y.vertical*/
+    background-position:center;
+    background-color: azure;
+}

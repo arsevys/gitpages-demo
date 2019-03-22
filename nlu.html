@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+  <script>
+
+      function unigrams(x){
+          return x.split(" ");
+      }
+      function bigrams(x){
+          let data=[];
+          let i = x.split(" ");
+          let amount =i.length;
+          for(let l =0; amount>l;l+=1){
+              console.log(l+1);
+
+              if((l+1)== amount ){
+                  console.log("final");
+                  data.push(i[l-1].trim()+" "+i[l].trim());
+       
+              }
+              else {
+                console.log(i[l].trim()+" "+i[l+1].trim())
+             data.push(i[l].trim()+" "+i[l+1].trim());
+
+              }
+            
+          }
+
+          console.log(data);
+      return data.slice(0,data.length-1);
+      }
+
+      function trigrams(x){
+          let data=[];
+          let i = x.split(" ");
+          let amount =i.length;
+          for(let l =0; amount>l;l+=1){
+              console.log(l+1);
+
+              if((l)== amount-2 ){
+                //   console.log("final",data);
+                  data.push(i[l-2].trim()+" "+i[l].trim());
+                  break;
+              }
+              else {
+                  console.log(amount,l)
+                // console.log(i[l].trim()+" "+i[l+2].trim())
+             data.push(i[l].trim()+" "+i[l+1].trim()+" "+i[l+2].trim());
+
+              }
+            
+          }
+
+          console.log(data);
+      return data.slice(0,data.length-1);
+      }
+    function nlu(x,words){
+       let confiabilidad=0;
+        for(let i=0;words.length>i;i++){
+            let amountWord=words[i].split(" ").length;
+            let tdata;
+            if(amountWord==1){ tdata=unigrams(x); }
+            else if(amountWord==2){ tdata=bigrams(x); }
+            else if(amountWord==3){ tdata=trigrams(x); }
+
+            for(let l=0;tdata.length>l;l++){
+                if(tdata[l].search(words[i])>=0){
+                    confiabilidad=confiabilidad+1;
+                    console.log("MAtCHHHHHH",tdata[l],words[i])
+                }
+            }
+        }
+
+        console.log("match ->",confiabilidad)
+
+    }
+
+    function keywordnlu(d,words){
+         let resultados=[];
+        for(let u=0;d.length>u;u++){
+             let x =d[u].descriFull;
+             let confiabilidad=0;
+        for(let i=0;words.length>i;i++){
+            let amountWord=words[i].split(" ").length;
+            let tdata;
+            if(amountWord==1){ tdata=unigrams(x); }
+            else if(amountWord==2){ tdata=bigrams(x); }
+            else if(amountWord==3){ tdata=trigrams(x); }
+
+            for(let l=0;tdata.length>l;l++){
+                if(tdata[l].search(words[i])>=0){
+                    confiabilidad=confiabilidad+1;
+                    console.log("MAtCHHHHHH",tdata[l],words[i])
+                }
+            }
+        }
+        let obj={
+            confiabilidad:confiabilidad,
+            texto:x
+        }
+        console.log("match ->",confiabilidad);
+        resultados.push(obj)
+        }
+       
+        result = resultados.sort(function(a, b) { return parseInt(a.confiabilidad) - parseInt(b.confiabilidad) });
+        console.log("-->",result.reverse());
+
+    }
+
+    let d=[ { 
+   
+    descriFull: 'Balanza de pagos (porcentaje del PBI) - Errores y Omisiones Netos' }, { codigo: 'PN02629BQ',
+ 
+    seccion: 'Cuenta Financiera',
+    frecuencia: 'Trimestral',
+    descriFull: 'Balanza de pagos (porcentaje del PBI) - Cuenta Financiera - Capitales de Corto Plazo - Pasivos' },
+  { codigo: 'PN02630BQ',
+    descripcion: 'Balanza de pagos (porcentaje del PBI)',
+    seccion: 'Financiamiento Excepcional',
+    frecuencia: 'Trimestral',
+    descriFull: 'Balanza de pagos (porcentaje del PBI) - Financiamiento Excepcional' },
+  { codigo: 'PN02631BQ',
+    descripcion: 'Balanza de pagos (porcentaje del PBI)',
+    seccion: 'Errores y Omisiones Netos',
+    frecuencia: 'Trimestral',
+    descriFull: 'Balanza de pagos (porcentaje del PBI) - Errores y Omisiones Netos' }]
+     keywordnlu(d,["Errores","Netos","pagos","Plazo"]);
+   // nlu("Hola me llamo javier",["me","llamo","me llamo javier", "javier" ,"lla","jav"]);
+  </script>
+<body>
+
+
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* al inicio flexbox rompe el ancho es romper la caja */
+      .flexbox {
+          background: black;
+       display: flex;
+       flex-wrap: wrap;  /*default nowrap , si es wrap se puede caer lo que resta de div*/
+       flex-direction: row; /*es por default -- column*/
+       
+       justify-content: space-evenly; /*flex start por default, flex-end */
+      }
+      .box {
+          width: 190px;
+          height: 150px;
+          margin:5px 0;
+          
+          
+          border : 1px solid red;
+          
+          flex-shrink: 0; /*con 0 hacemos que se mantenga su ancho , con 1 rompemos el modelo e caja*/
+          color:white;
+      }
+    
+    </style>
+</head>
+<body>
+    
+    <div class="flexbox">
+
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+        <div class="box">11</div>
+    </div>
+</body>
+</html>
